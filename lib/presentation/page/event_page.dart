@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:theatre/core/constants/data.dart';
 import 'package:theatre/presentation/widgets/layout/club_scroll.dart';
 import 'package:theatre/presentation/widgets/layout/event_scroll.dart';
 
@@ -26,7 +27,7 @@ class EventPage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            EventScroll(events: []),
+            EventScroll(events: events),
             const SizedBox(
               height: 20,
             ),
@@ -37,7 +38,7 @@ class EventPage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            ClubScroll(events: [])
+            ClubScroll(clubs: clubs)
           ],
         ),
       ),

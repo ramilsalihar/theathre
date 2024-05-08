@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theatre/core/constants.dart';
+import 'package:theatre/core/constants/constants.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton(

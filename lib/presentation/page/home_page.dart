@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:theatre/core/constants/data.dart';
 import 'package:theatre/presentation/widgets/layout/club_scroll.dart';
 import 'package:theatre/presentation/widgets/layout/event_scroll.dart';
 
@@ -17,10 +18,10 @@ class _HomeMoviePage extends State<HomePage> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'App Title',
-          style: theme.textTheme.headlineLarge,
-        ),
+        title: Text('Naryn Theatre',
+            style: theme.textTheme.displayLarge!.copyWith(
+              color: Colors.white,
+            )),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.login),
@@ -40,23 +41,23 @@ class _HomeMoviePage extends State<HomePage> {
           children: [
             Text(
               "Events",
-              style: theme.textTheme.headlineLarge,
+              style: theme.textTheme.displayLarge,
             ),
             const SizedBox(
               height: 10,
             ),
-            EventScroll(events: []),
+            EventScroll(events: events),
             const SizedBox(
               height: 20,
             ),
             Text(
               "Clubs",
-              style: theme.textTheme.headlineLarge,
+              style: theme.textTheme.displayLarge,
             ),
             const SizedBox(
               height: 10,
             ),
-            ClubScroll(events: [])
+            ClubScroll(clubs: clubs)
           ],
         ),
       ),

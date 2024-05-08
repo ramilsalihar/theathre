@@ -1,27 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:theatre/data/model/candidate_model.dart';
-
-List<CandidateModel> candidates = [
-  CandidateModel(
-      name: 'John',
-      surname: 'Doe',
-      phoneNumber: '1234567890',
-      gender: 'Male',
-      age: 30),
-  CandidateModel(
-      name: 'Jane',
-      surname: 'Doe',
-      phoneNumber: '0987654321',
-      gender: 'Female',
-      age: 28),
-  CandidateModel(
-      name: 'Bob',
-      surname: 'Smith',
-      phoneNumber: '1122334455',
-      gender: 'Male',
-      age: 35),
-];
+import 'package:theatre/core/constants/data.dart';
 
 @RoutePage()
 class RequestPage extends StatelessWidget {
@@ -46,53 +25,95 @@ class RequestPage extends StatelessWidget {
               itemCount: candidates.length,
               itemBuilder: (context, index) {
                 final candidate = candidates[index];
-                return Card(
-                  elevation: 5,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: theme.cardColor,
-                    ),
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 10,
+                return InkWell(
+                  onTap: () {
+                    print('Candidate Details');
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('Candidate Details',
+                                style: theme.textTheme.displayLarge),
+                            content: SizedBox(
+                              height: 40,
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                        'Name: ${candidate.name} ${candidate.surname}'),
+                                    Text('Phone: ${candidate.phoneNumber}'),
+                                  ]),
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  const SnackBar(
+                                    content: Text('Candidate Approved'),
+                                  );
+                                },
+                                child: Text('Approve'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  const SnackBar(
+                                    content: Text('Candidate Rejected'),
+                                  );
+                                },
+                                child: Text('Reject'),
+                              ),
+                            ],
+                          );
+                        });
+                  },
+                  child: Card(
+                    elevation: 5,
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: theme.cardColor,
                       ),
-                      leading: Container(
-                        padding: const EdgeInsets.only(right: 12),
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(5),
-                            bottomRight: Radius.circular(5),
-                          ),
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
                         ),
-                        child: Icon(Icons.person, color: theme.primaryColor),
-                      ),
-                      title: Text(
-                        '${candidate.name} ${candidate.surname}',
-                        style: theme.textTheme.headlineMedium!
-                            .copyWith(color: Colors.black),
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Phone: ${candidate.phoneNumber}',
-                            style: theme.textTheme.headlineMedium!
-                                .copyWith(color: Colors.black),
+                        leading: Container(
+                          padding: const EdgeInsets.only(right: 12),
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
                           ),
-                          Text(
-                            'Gender: ${candidate.gender}',
-                            style: theme.textTheme.headlineMedium!
-                                .copyWith(color: Colors.black),
-                          ),
-                          Text(
-                            'Age: ${candidate.age}',
-                            style: theme.textTheme.headlineSmall!
-                                .copyWith(color: Colors.black),
-                          ),
-                        ],
+                          child: Icon(Icons.person, color: theme.primaryColor),
+                        ),
+                        title: Text(
+                          '${candidate.name} ${candidate.surname}',
+                          style: theme.textTheme.headlineMedium!
+                              .copyWith(color: Colors.black),
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Phone: ${candidate.phoneNumber}',
+                              style: theme.textTheme.headlineMedium!
+                                  .copyWith(color: Colors.black),
+                            ),
+                            Text(
+                              'Gender: ${candidate.gender}',
+                              style: theme.textTheme.headlineMedium!
+                                  .copyWith(color: Colors.black),
+                            ),
+                            Text(
+                              'Age: ${candidate.age}',
+                              style: theme.textTheme.headlineSmall!
+                                  .copyWith(color: Colors.black),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

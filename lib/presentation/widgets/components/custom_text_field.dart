@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theatre/core/constants.dart';
+import 'package:theatre/core/constants/constants.dart';
 
 class CustomTextField extends StatelessWidget {
   CustomTextField({super.key, required this.textField});

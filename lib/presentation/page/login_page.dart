@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_overlay/loading_overlay.dart';
-import 'package:theatre/core/constants.dart';
+import 'package:theatre/core/constants/constants.dart';
+import 'package:theatre/presentation/cubit/role_cubit.dart';
 import 'package:theatre/presentation/widgets/components/custom_bottom_screen.dart';
 import 'package:theatre/presentation/widgets/components/custom_text_field.dart';
 import 'package:theatre/presentation/widgets/components/screen_title.dart';
@@ -18,6 +20,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _saving = false;
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -76,47 +79,31 @@ class _LoginPageState extends State<LoginPage> {
                                 hintText: 'Password'),
                           ),
                         ),
-                        CustomBottomScreen(
-                          textButton: 'Login',
-                          heroTag: 'login_btn',
-                          question: 'Forgot password?',
-                          buttonPressed: () async {
-                            context.router.pushNamed('/admin-home');
-                            // FocusManager.instance.primaryFocus?.unfocus();
-                            // setState(() {
-                            //   _saving = true;
-                            // });
-                            // try {
-                            //   // login
-                            // } catch (e) {
-                            //   signUpAlert(
-                            //     context: context,
-                            //     onPressed: () {
-                            //       setState(() {
-                            //         _saving = false;
-                            //       });
-                            //       // Navigator.popAndPushNamed(
-                            //       //     context, LoginScreen.id);
-                            //     },
-                            //     title: 'WRONG PASSWORD OR EMAIL',
-                            //     desc:
-                            //         'Confirm your email and password and try again',
-                            //     btnText: 'Try Now',
-                            //   ).show();
-                            // }
+                        BlocConsumer<RoleCubit, RoleState>(
+                          listener: (context, state) {
+                            print(state);
                           },
-                          questionPressed: () {
-                            signUpAlert(
-                              onPressed: () async {
-                                // await FirebaseAuth.instance
-                                //     .sendPasswordResetEmail(email: _email);
+                          builder: (context, state) {
+                            return CustomBottomScreen(
+                              textButton: 'Login',
+                              heroTag: 'login_btn',
+                              question: 'Forgot password?',
+                              buttonPressed: () async {
+                                BlocProvider.of<RoleCubit>(context)
+                                    .setAsAdmin();
+                                context.router.pushNamed('/admin-home');
                               },
-                              title: 'RESET YOUR PASSWORD',
-                              desc:
-                                  'Click on the button to reset your password',
-                              btnText: 'Reset Now',
-                              context: context,
-                            ).show();
+                              questionPressed: () {
+                                signUpAlert(
+                                  onPressed: () {},
+                                  title: 'RESET YOUR PASSWORD',
+                                  desc:
+                                      'Click on the button to reset your password',
+                                  btnText: 'Reset Now',
+                                  context: context,
+                                ).show();
+                              },
+                            );
                           },
                         ),
                       ],
