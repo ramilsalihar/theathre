@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'candidate_model.g.dart';
+
+@JsonSerializable()
 class CandidateModel {
   final String name;
   final String surname;
@@ -12,4 +17,9 @@ class CandidateModel {
     required this.gender,
     required this.age,
   });
+
+  factory CandidateModel.fromJson(Map<String, dynamic> json) =>
+      _$CandidateModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CandidateModelToJson(this);
 }

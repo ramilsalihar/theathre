@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'admin_model.g.dart';
+
+@JsonSerializable()
 class AdminModel {
   final String name;
   final String surname;
@@ -12,4 +17,9 @@ class AdminModel {
     required this.email,
     required this.password,
   });
+
+  factory AdminModel.fromJson(Map<String, dynamic> json) =>
+      _$AdminModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AdminModelToJson(this);
 }

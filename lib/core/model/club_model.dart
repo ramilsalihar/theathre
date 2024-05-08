@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'club_model.g.dart';
+
+@JsonSerializable()
 class ClubModel {
   final String title;
   final String description;
@@ -22,4 +27,9 @@ class ClubModel {
     required this.totalSpots,
     required this.price,
   });
+
+  factory ClubModel.fromJson(Map<String, dynamic> json) =>
+      _$ClubModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ClubModelToJson(this);
 }
