@@ -13,7 +13,7 @@ class AppThemes {
     primaryColor: _lightColors.primaryColor,
     fontFamily: 'Fira Sans',
     appBarTheme: AppBarTheme(
-        color: _lightColors.green,
+        color: _lightColors.primaryColor,
         titleTextStyle: TextStyle(
             color: _lightColors.white,
             fontSize: dimens.textDisplayLarge,
@@ -34,7 +34,7 @@ class AppThemes {
       ),
     ),
     buttonTheme: ButtonThemeData(
-      buttonColor: _lightColors.green,
+      buttonColor: _lightColors.primaryColor,
       textTheme: ButtonTextTheme.normal,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),

@@ -22,7 +22,6 @@ class AppTextTheme extends TextTheme {
           ),
           headlineLarge: TextStyle(
             fontSize: dimens.textHeadlineLarge,
-            color: colors.green,
             fontWeight: FontWeight.w400,
           ),
           headlineMedium: TextStyle(

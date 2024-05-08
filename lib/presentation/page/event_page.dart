@@ -4,32 +4,13 @@ import 'package:theatre/presentation/widgets/layout/club_scroll.dart';
 import 'package:theatre/presentation/widgets/layout/event_scroll.dart';
 
 @RoutePage()
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class EventPage extends StatelessWidget {
+  const EventPage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomeMoviePage();
-}
-
-class _HomeMoviePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'App Title',
-          style: theme.textTheme.headlineLarge,
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.login),
-            onPressed: () {
-              context.router.pushNamed('/login');
-            },
-          ),
-        ],
-      ),
       backgroundColor: theme.cardColor,
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -40,7 +21,7 @@ class _HomeMoviePage extends State<HomePage> {
           children: [
             Text(
               "Events",
-              style: theme.textTheme.headlineLarge,
+              style: theme.textTheme.displayLarge,
             ),
             const SizedBox(
               height: 10,
@@ -51,7 +32,7 @@ class _HomeMoviePage extends State<HomePage> {
             ),
             Text(
               "Clubs",
-              style: theme.textTheme.headlineLarge,
+              style: theme.textTheme.displayLarge,
             ),
             const SizedBox(
               height: 10,
